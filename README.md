@@ -1,6 +1,7 @@
 # A Simple Animation Library for Python
 
-Bob Muller, September 2022
+Bob Muller
+September 2022
 
 ### Getting Started
 
