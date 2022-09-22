@@ -1,0 +1,7 @@
+A simple MVU animation library
+
+The PYTHONPATH variable includes a path to the animate.py
+library source code. For the CSCI 1100 course F22, the
+library is in ~/csci1100/lib
+
+To be clear, the copy in ./src/ should be indentical.
