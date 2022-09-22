@@ -214,17 +214,17 @@ The `Animate` library supports the development of interactive graphical applicat
 The basic idea is that the state of a graphical application is represented or "modeled" using a single value — in this architecture the value is called a *model*. For a non-trivial application the model will usually be a structured value with many parts. The MVU architecture is implemented in a cycle with the model being passed to a *view* function which produces a graphical representation, i.e., an image, of the model for the user to see. When *events* such as *clock-ticks*, *touchpad actions* or *keystrokes* occur, the model is threaded through an *update* function which produces a new model reflecting the changed state of the app.
 
 ```
-                                      +------------+
-                  +-------------------+    view    |<-------------------+
-                  |                   +------------+                    |
-                  v                                                     |
-          +----------------+                                   +--------+-------+
-          |     events     |                                   |      model     |
-          +-------+--------+                                   +----------------+
-                  |                                                     ^
-                  |                   +------------+                    |
-                  +------------------>|   update   +--------------------+
-                                      +------------+
+                             +------------+
+         +-------------------+    view    |<-------------------+
+         |                   +------------+                    |
+         v                                                     |
+  +--------------+                                     +-------+------+
+  |    events    |                                     |     model    |
+  +------+-------+                                     +--------------+
+         |                                                     ^
+         |                   +------------+                    |
+         +------------------>|   update   +--------------------+
+                             +------------+
 ```
 
 In the general MVU architecture, all of the different types of events are threaded through a single `update` function and the `update` function sorts out which kind of event occurred and how to transform the input model to the output model. For example, if the model represented a checking account with a balance field, and the event was a deposit, then the result of the update would be a model with an updated account balance.
