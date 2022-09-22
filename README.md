@@ -1,8 +1,10 @@
-# A Simple Animation Library for Python
+# CSCI 1100 Gateway to Computer Science
 
-Bob Muller
+### Fall 2022
 
-September 2022
+---
+
+## A Simple Animation Library for Python
 
 ### Getting Started
 
@@ -20,7 +22,7 @@ The graphics system used in the library is based on a 2D plane with x-coordinate
 Animate.start()
 ```
 
-<img src="./doc/img/imageEmpty.png" width=400>
+<img src="./img/imageEmpty.png" width=400>
 
 In the example, the `Animate.start` function is called with no arguments. But it has several optional arguments. Each optional argument has a name and a default value. For example, the optional `title` argument has the default value of the name of our class. The optional `width` and `height` arguments both have default values of 800. The default values can be overridden by the programmer. For example, to create a display with width 800, height 600 and title, "Wordle", we could write
 
@@ -65,7 +67,7 @@ Image.circle(200, Color.DodgerBlue)
 Image.circle(200, Color.DodgerBlue, lineWidth=10)
 ```
 
-| <img src="./doc/img/circle.png" width="400px" /> | <img src="./doc/img/circleLine.png" width="400px" /> | 
+| <img src="./img/circle.png" width="400px" /> | <img src="./img/circleLine.png" width="400px" /> | 
 | :--------------------------------------: | :--------------------------------------: |
 |                  lineWidth=0                  | lineWidth=10 |
 
@@ -73,7 +75,7 @@ Image.circle(200, Color.DodgerBlue, lineWidth=10)
 
 The smallest rectangle containing all of the points of an image is called the *bounding box* of the image. The upper left corner of the bounding box is the point with the minimum x value and minimum y value of the set of points in the image. This point is called the image's *pin*. In the image below, the bounding box and pin are shown in red.
 
-|        <img src="./doc/img/bounding.png" width="600px" />        |
+|        <img src="./img/bounding.png" width="600px" />        |
 | :----------------------------------------------------------: |
 | Red line shows bounding box with pin at (min x, min y). Circle image is placed at (200, 200) on backing. |
 
@@ -103,7 +105,7 @@ def circleWithShadedSquare(radius):
   return Image.placeImage(square, (radius, radius), circle)
 ```
 
-|   <img src="./doc/img/image1.jpeg" width="350px" />   | <img src="./doc/img/image5.jpeg" width="350px" /> |
+|   <img src="./img/image1.jpeg" width="350px" />   | <img src="./img/image5.jpeg" width="350px" /> |
 | :-----------------------------------------------: | :-------------------------------------------: |
 | Green square placed on Circle at (radius, radius) |          Green square with alpha=200          |
 
@@ -125,7 +127,7 @@ In the example, the first argument to the `Image.line` function is a list `[...`
 
 Like all images, lines have bounding boxes --- the smallest rectangle containing all of the points in the line. As usual, the pin of the bounding box is the minimum x and the minimum y, i.e., the upper left corner of the bounding box. Note that for a single-segment line, the pin-point is always one end of the line segment but **for multisegment lines, the pin-point may not be on the line**.
 
-| <img src="./doc/img/image2.jpeg" width="200px" /> |    <img src="./doc/img/image3.jpeg" width="200px" />     | <img src="./doc/img/image4.jpeg" width="200px" /> |
+| <img src="./img/image2.jpeg" width="200px" /> |    <img src="./img/image3.jpeg" width="200px" />     | <img src="./img/image4.jpeg" width="200px" /> |
 | :-------------------------------------------: | :--------------------------------------------------: | :-------------------------------------------: |
 |              Line [(radius, 0)]               | Line [(radius, 0); (0, -radius)] at (radius, radius) |          Same line placed at (0, 0)           |
 
@@ -146,12 +148,12 @@ A polygon is a shape with multiple sides. A triangle is a 3-sided polygon, a squ
 
 For example, a *regular hexagon* is a hexagon where the 6 sides are of equal length and 6 equal angles. As with multi-segment lines, the pin-point of a polygon is the upper left corner of the polygon's bounding box and may not be a point on the polygon.
 
-<img src="./doc/img/polygon.png" width=600>
+<img src="./img/polygon.png" width=600>
 
 #### Text
 
 Text can be displayed in *Veranda* font with varying size. The default size is 50. The pin-point for a text image is, as usual, upper left.
-| <img src="./doc/img/text1.png" width="350px" /> | <img src="./doc/img/text2.png" width="350px" /> |
+| <img src="./img/text1.png" width="350px" /> | <img src="./img/text2.png" width="350px" /> |
 | :-----------------------------------------: | :-----------------------------------------: |
 |            Default font size=50             |                Font size=200                |
 
@@ -203,7 +205,7 @@ for row in range(height):
 resultImage = Image.fromArray(pixels)
 ```
 
-| <img src="./doc/img/pots.png" width="350px" /> | <img src="./doc/img/pots2.png" width="350px" /> |
+| <img src="./img/pots.png" width="350px" /> | <img src="./img/pots2.png" width="350px" /> |
 | :----------------------------------------: | :-----------------------------------------: |
 |                                            |                                             |
 
@@ -214,17 +216,17 @@ The `Animate` library supports the development of interactive graphical applicat
 The basic idea is that the state of a graphical application is represented or "modeled" using a single value — in this architecture the value is called a *model*. For a non-trivial application the model will usually be a structured value with many parts. The MVU architecture is implemented in a cycle with the model being passed to a *view* function which produces a graphical representation, i.e., an image, of the model for the user to see. When *events* such as *clock-ticks*, *touchpad actions* or *keystrokes* occur, the model is threaded through an *update* function which produces a new model reflecting the changed state of the app.
 
 ```
-                           +------------+
-       +-------------------+    view    |<-------------------+
-       |                   +------------+                    |
-       v                                                     |
-+--------------+                                     +-------+------+
-|    events    |                                     |     model    |
-+------+-------+                                     +--------------+
-       |                                                     ^
-       |                   +------------+                    |
-       +------------------>|   update   +--------------------+
-                           +------------+
+                                      +------------+
+                  +-------------------+    view    |<-------------------+
+                  |                   +------------+                    |
+                  v                                                     |
+          +----------------+                                   +--------+-------+
+          |     events     |                                   |      model     |
+          +-------+--------+                                   +----------------+
+                  |                                                     ^
+                  |                   +------------+                    |
+                  +------------------>|   update   +--------------------+
+                                      +------------+
 ```
 
 In the general MVU architecture, all of the different types of events are threaded through a single `update` function and the `update` function sorts out which kind of event occurred and how to transform the input model to the output model. For example, if the model represented a checking account with a balance field, and the event was a deposit, then the result of the update would be a model with an updated account balance.
